@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Vibes | Melisin svemir inspiracije</title>
+  <meta name="description" content="Cosmic Vibes je moj blog o svemiru, inspiraciji, planetama i kreativnim pričama." />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #10172a 0%, #060812 45%, #000000 100%);
+      color: white;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .stars,
+    .stars2,
+    .stars3 {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .stars {
+      background:
+        radial-gradient(2px 2px at 5% 10%, white, transparent),
+        radial-gradient(2px 2px at 12% 22%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 18% 80%, #ddd, transparent),
+        radial-gradient(2px 2px at 25% 15%, white, transparent),
+        radial-gradient(2px 2px at 31% 60%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 38% 35%, #ddd, transparent),
+        radial-gradient(2px 2px at 45% 10%, white, transparent),
+        radial-gradient(2px 2px at 52% 70%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 58% 25%, #ddd, transparent),
+        radial-gradient(2px 2px at 65% 18%, white, transparent),
+        radial-gradient(2px 2px at 72% 55%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 80% 75%, #ddd, transparent),
+        radial-gradient(2px 2px at 88% 28%, white, transparent),
+        radial-gradient(2px 2px at 94% 65%, #fff, transparent);
+      animation: moveStars 90s linear infinite;
+      z-index: -5;
+    }
+
+    .stars2 {
+      background:
+        radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 15% 65%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 22% 48%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 29% 88%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 36% 18%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 43% 52%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 49% 82%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 57% 38%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 64% 90%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 71% 14%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 78% 44%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 84% 68%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 91% 34%, rgba(255,255,255,0.9), transparent);
+      animation: moveStars 130s linear infinite reverse;
+      z-index: -4;
+    }
+
+    .stars3 {
+      background:
+        radial-gradient(3px 3px at 10% 75%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(3px 3px at 33% 22%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(3px 3px at 57% 12%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(3px 3px at 76% 82%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(3px 3px at 92% 18%, rgba(255,255,255,0.5), transparent);
+      animation: twinkle 4s ease-in-out infinite alternate;
+      z-index: -3;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-250px); }
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, transparent 58%, rgba(255, 105, 180, 0.08));
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .moon {
+      position: absolute;
+      top: 70px;
+      right: 90px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #d9d9d9 60%, #b8b8b8 100%);
+      box-shadow: 0 0 40px rgba(255,255,255,0.9);
+      z-index: -1;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      animation: floatPlanet 8s ease-in-out infinite;
+    }
+
+    .planet1 {
+      top: 180px;
+      left: 70px;
+      width: 85px;
+      height: 85px;
+      background: linear-gradient(45deg, #c471ed, #ff69b4);
+      box-shadow: 0 0 25px #c471ed;
+    }
+
+    .planet2 {
+      top: 430px;
+      right: 120px;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      box-shadow: 0 0 25px #00c6ff;
+      animation-delay: 1s;
+    }
+
+    .planet3 {
+      top: 290px;
+      left: 320px;
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      box-shadow: 0 0 20px #ff9a9e;
+      animation-delay: 2s;
+    }
+
+    .planet4 {
+      bottom: 160px;
+      left: 120px;
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+      box-shadow: 0 0 18px #fbc2eb;
+      animation-delay: 3s;
+    }
+
+    .saturn {
+      position: absolute;
+      top: 150px;
+      left: 72%;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ffcc70, #ff8177);
+      box-shadow: 0 0 28px rgba(255, 177, 66, 0.8);
+      animation: floatPlanet 9s ease-in-out infinite;
+    }
+
+    .saturn::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 40px;
+      border: 4px solid rgba(255, 221, 170, 0.75);
+      border-radius: 50%;
+      top: 26px;
+      left: -24px;
+      transform: rotate(-18deg);
+      box-shadow: 0 0 12px rgba(255, 221, 170, 0.35);
+    }
+
+    @keyframes floatPlanet {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .astronaut {
+      position: absolute;
+      font-size: 50px;
+      animation: floatAstronaut 5s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.25));
+    }
+
+    .a1 {
+      top: 160px;
+      right: 180px;
+    }
+
+    .a2 {
+      top: 520px;
+      left: 120px;
+      animation-delay: 1s;
+    }
+
+    .a3 {
+      top: 420px;
+      right: 70px;
+      animation-delay: 2s;
+      font-size: 42px;
+    }
+
+    @keyframes floatAstronaut {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-18px) rotate(3deg); }
+    }
+
+    .shooting-star {
+      position: fixed;
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(255,255,255,0), white, rgba(255,255,255,0));
+      border-radius: 999px;
+      transform: rotate(-25deg);
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .shooting-star::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -2px;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 15px white;
+    }
+
+    .shoot1 {
+      top: 13%;
+      left: 72%;
+      animation: shoot 6s linear infinite;
+    }
+
+    .shoot2 {
+      top: 32%;
+      left: 78%;
+      animation: shoot 8s linear infinite 2s;
+    }
+
+    .shoot3 {
+      top: 18%;
+      left: 58%;
+      animation: shoot 7s linear infinite 4s;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(-25deg);
+      }
+      8% {
+        opacity: 1;
+      }
+      30% {
+        opacity: 0;
+        transform: translate(-260px, 180px) rotate(-25deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-260px, 180px) rotate(-25deg);
+      }
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #10172a 0%, #060812 45%, #000000 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-planet {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff69b4, #c471ed);
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+      position: relative;
+      animation: spinPlanet 2.4s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .loader-planet::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 30px;
+      border: 4px solid rgba(255,255,255,0.65);
+      border-radius: 50%;
+      top: 28px;
+      left: -20px;
+      transform: rotate(-18deg);
+    }
+
+    @keyframes spinPlanet {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.05); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    .loader p {
+      color: #ffb6ff;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      width: 54px;
+      height: 54px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(45deg, #ff69b4, #c471ed);
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -330px;
+      width: 310px;
+      height: 100%;
+      background: rgba(10, 14, 28, 0.96);
+      backdrop-filter: blur(10px);
+      box-shadow: 10px 0 40px rgba(0, 0, 0, 0.35);
+      z-index: 1002;
+      transition: left 0.35s ease;
+      padding: 24px 18px;
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-title {
+      font-size: 24px;
+      color: #ffb6ff;
+      font-weight: bold;
+    }
+
+    .close-sidebar {
+      font-size: 28px;
+      cursor: pointer;
+      color: #ffb6ff;
+    }
+
+    .accordion-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .accordion-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: white;
+      text-align: left;
+      padding: 16px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion-btn span:last-child {
+      color: #ffb6ff;
+      font-size: 20px;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      padding: 0 18px;
+    }
+
+    .accordion-content a,
+    .accordion-content p {
+      display: block;
+      color: #e9e9e9;
+      padding: 10px 0;
+      font-size: 15px;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1000;
+      display: none;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    header {
+      text-align: center;
+      padding: 92px 20px 30px;
+    }
+
+    header h1 {
+      font-size: 58px;
+      color: #ffb6ff;
+      text-shadow: 0 0 15px #ffb6ff;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      color: #ddd;
+      margin-top: 12px;
+      font-size: 18px;
+    }
+
+    .top-nav {
+      width: 92%;
+      max-width: 1150px;
+      margin: 0 auto 28px;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.08);
+    }
+
+    .top-nav a {
+      color: #ffb6ff;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .top-nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px #ff69b4;
+    }
+
+    .hero {
+      width: 92%;
+      max-width: 1150px;
+      margin: 0 auto;
+      min-height: 78vh;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 30px;
+      padding: 38px 0 80px;
+    }
+
+    .hero-text {
+      background: rgba(255,255,255,0.06);
+      border-radius: 28px;
+      padding: 38px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.08);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 182, 255, 0.14);
+      color: #ffb6ff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+    .hero h2 {
+      font-size: 50px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 span {
+      color: #ffb6ff;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff69b4, #c471ed);
+      border: none;
+      padding: 13px 22px;
+      color: white;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      box-shadow: 0 0 18px rgba(255, 105, 180, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: none;
+    }
+
+    .hero-cards {
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.08);
+      transition: 0.35s ease;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 0 28px rgba(255, 105, 180, 0.18);
+    }
+
+    section {
+      width: 92%;
+      max-width: 1150px;
+      margin: 0 auto 34px;
+    }
+
+    .section-box {
+      background: rgba(255,255,255,0.06);
+      border-radius: 28px;
+      padding: 34px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 0 40px rgba(255, 105, 180, 0.14);
+    }
+
+    .section-title {
+      font-size: 34px;
+      color: #ffb6ff;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      color: #ddd;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-size: 17px;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .post-card,
+    .about-card,
+    .contact-card,
+    .quote-card,
+    .gallery-card,
+    .social-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.35s ease;
+      overflow: hidden;
+    }
+
+    .post-card:hover,
+    .about-card:hover,
+    .contact-card:hover,
+    .gallery-card:hover,
+    .social-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 24px rgba(255, 105, 180, 0.18);
+    }
+
+    .post-card {
+      padding: 24px;
+    }
+
+    .post-card h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .post-card p {
+      font-size: 17px;
+      color: #eee;
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .about-card,
+    .contact-card,
+    .quote-card {
+      padding: 24px;
+    }
+
+    .about-card h3,
+    .contact-card h3,
+    .quote-card h3 {
+      color: #ffb6ff;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .about-card p,
+    .contact-card p,
+    .quote-card p {
+      color: #e7e7e7;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .quote-card {
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .quote-card p {
+      font-size: 22px;
+      line-height: 1.7;
+      color: #fff;
+    }
+
+    .divider-quote {
+      width: 92%;
+      max-width: 950px;
+      margin: 20px auto 38px;
+      text-align: center;
+      font-size: 24px;
+      color: #f2d6ff;
+      opacity: 0.92;
+      line-height: 1.7;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .gallery-info {
+      padding: 20px;
+    }
+
+    .gallery-info h3 {
+      color: #ffb6ff;
+      margin-bottom: 12px;
+      font-size: 28px;
+    }
+
+    .gallery-info p {
+      font-size: 16px;
+      color: #eee;
+      line-height: 1.75;
+    }
+
+    .instagram-section {
+      width: 92%;
+      max-width: 1150px;
+      margin: 0 auto 34px;
+    }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .social-card {
+      padding-bottom: 16px;
+    }
+
+    .social-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .social-meta {
+      padding: 16px 18px 0;
+      color: #ffb6ff;
+      font-size: 15px;
+    }
+
+    .social-text {
+      padding: 10px 18px 0;
+      color: #efefef;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .social-actions {
+      padding: 14px 18px 0;
+      color: #ffd2f1;
+      font-size: 15px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      z-index: 1500;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 18px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.15);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      color: white;
+      font-size: 42px;
+      cursor: pointer;
+    }
+
+    .footer {
+      width: 92%;
+      max-width: 1100px;
+      margin: 0 auto 26px;
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 15px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 950px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .posts-grid,
+      .about-grid,
+      .contact-grid,
+      .gallery-grid,
+      .instagram-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h2 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn {
+        top: 18px;
+        left: 18px;
+        width: 50px;
+        height: 50px;
+      }
+
+      header {
+        padding-top: 84px;
+      }
+
+      header h1 {
+        font-size: 42px;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .hero-text,
+      .section-box {
+        padding: 24px;
+      }
+
+      .moon {
+        width: 85px;
+        height: 85px;
+        right: 25px;
+      }
+
+      .planet1 {
+        width: 60px;
+        height: 60px;
+      }
+
+      .planet2,
+      .planet3,
+      .planet4 {
+        width: 40px;
+        height: 40px;
+      }
+
+      .saturn {
+        width: 70px;
+        height: 70px;
+        left: 66%;
+      }
+
+      .saturn::before {
+        width: 100px;
+        height: 28px;
+        top: 18px;
+        left: -16px;
+      }
+
+      .astronaut {
+        font-size: 34px;
+      }
+
+      .a3 {
+        display: none;
+      }
+
+      .gallery-card img,
+      .social-card img {
+        height: 220px;
+      }
+
+      .divider-quote {
+        font-size: 20px;
+        padding: 0 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-planet"></div>
+    <p>Ulazim u Cosmic Vibes...</p>
+  </div>
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <div class="shooting-star shoot1"></div>
+  <div class="shooting-star shoot2"></div>
+  <div class="shooting-star shoot3"></div>
+
+  <div class="moon"></div>
+  <div class="planet planet1"></div>
+  <div class="planet planet2"></div>
+  <div class="planet planet3"></div>
+  <div class="planet planet4"></div>
+  <div class="saturn"></div>
+
+  <div class="astronaut a1">👩‍🚀</div>
+  <div class="astronaut a2">🧑‍🚀</div>
+  <div class="astronaut a3">🚀</div>
+
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Cosmic Menu</div>
+      <div class="close-sidebar" onclick="closeSidebar()">×</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>🌙 Navigacija</span>
+        <span>+</span>
+      </button>
+      <div class="accordion-content">
+        <a href="#home" onclick="closeSidebar()">Početna</a>
+        <a href="#about" onclick="closeSidebar()">O meni</a>
+        <a href="#blog" onclick="closeSidebar()">Blog</a>
+        <a href="#gallery" onclick="closeSidebar()">Galerija</a>
+        <a href="#insta" onclick="closeSidebar()">Cosmic feed</a>
+        <a href="#contact" onclick="closeSidebar()">Kontakt</a>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>✨ O mom svijetu</span>
+        <span>+</span>
+      </button>
+      <div class="accordion-content">
+        <p>Volim svemir, kreativnost, zvijezde, planete, nježne boje i male ideje koje običan trenutak učine posebnim.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>🚀 Brzi ulazi</span>
+        <span>+</span>
+      </button>
+      <div class="accordion-content">
+        <a href="#first-post" onclick="closeSidebar()">Moj prvi post</a>
+        <a href="#space-love" onclick="closeSidebar()">Zašto volim svemir</a>
+        <a href="#planets" onclick="closeSidebar()">Planete</a>
+<a href="#apollo-artemis" onclick="closeSidebar()">
+   Od Apolla do Artemisa
+</a>
+
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>💫 Moj citat</span>
+        <span>+</span>
+      </button>
+      <div class="accordion-content">
+        <p>“Možda smo mali u svemiru, ali svako od nas ima svoje posebno mjesto na nebu.”</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        <span>📩 Kontakt</span>
+        <span>+</span>
+      </button>
+      <div class="accordion-content">
+        <p>Email: melisatabic377@gmail.com</p>
+        <p>Instagram: melisatabic</p>
+      </div>
+    </div>
+  </aside>
+
+  <header id="home" class="reveal">
+    <h1>🌙 Cosmic Vibes</h1>
+    <p>Welcome to my little universe 🌙✨</p>
+  </header>
+
+  <nav class="top-nav reveal">
+    <a href="#home">🌙 Početna</a>
+    <a href="#about">👩‍🚀 O meni</a>
+    <a href="#blog">🚀 Blog</a>
+    <a href="#gallery">📸 Galerija</a>
+    <a href="#insta">💖 Feed</a>
+    <a href="#contact">📩 Kontakt</a>
+  </nav>
+
+  <section class="hero reveal">
+    <div class="hero-text">
+      <div class="hero-badge">✨ moj mali digitalni svemir</div>
+      <h2>Ćao, ja sam <span>Melisa</span> i ovdje počinje moj svijet zvijezda, ideja i posebnih priča :) </h2>
+      <p>
+        Ovdje dijelim svoje misli, priče, ljubav prema svemiru i male trenutke koji me inspirišu.
+        Želim da ova stranica bude nježna, moderna, zanimljiva i posebna — mjesto gdje ideje imaju svoje nebo.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#blog" class="btn">🚀 Istraži blog</a>
+        <a href="#gallery" class="btn secondary">🪐 Pogledaj galeriju</a>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="mini-card">
+        <h3>🌌 Moj vibe</h3>
+        <p>Zvijezde, planete, noćno nebo, nježne boje i osjećaj da uvijek postoji još nešto lijepo za otkriti.</p>
+      </div>
+
+      <div class="mini-card">
+        <h3>💖 Omiljena misao</h3>
+        <p>Svako od nas ima svoje mjesto među zvijezdama — samo treba da vjeruje u svoj sjaj.</p>
+      </div>
+
+      <div class="mini-card">
+        <h3>🪄 Šta ovdje možeš naći</h3>
+        <p>Moje postove, zanimljive opise planeta, male citate, inspiraciju i dio mog unutrašnjeg svijeta.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <div class="section-box">
+      <h2 class="section-title">👩‍🚀 O meni</h2>
+      <p class="section-subtitle">
+        Volim svemir, lijepe ideje, kreativne projekte i osjećaj da i najmanja misao može postati nešto posebno.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>✨ Ko sam ja</h3>
+          <p>
+            Ja sam osoba koja inspiraciju pronalazi u noćnom nebu, bojama svemira i malim trenucima koji u sebi nose neku posebnu tišinu i ljepotu.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <h3>🌙 Šta volim</h3>
+          <p>
+            Volim zvijezde, planete, nježan dizajn, moderne stranice, citate i sve ono što spaja maštu, emociju i kreativnost.
+          </p>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <h3>💫 Moj citat</h3>
+        <p>“Možda smo mali u svemiru, ali svako od nas ima svoje posebno mjesto na nebu.”</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-quote reveal">
+    💫 “Svaka zvijezda je podsjetnik da i ti možeš sijati.”
+  </div>
+
+  <section id="blog" class="reveal">
+    <div class="section-box">
+      <h2 class="section-title">🚀 Blog</h2>
+      <p class="section-subtitle">
+        Ovdje su moji prvi tekstovi — nježni, inspirativni i puni ljubavi prema svemiru.
+      </p>
+
+      <div class="posts-grid">
+        <div class="post-card" id="first-post">
+          <h3>🌌 Moj prvi post</h3>
+          <p>
+            Dobro došli u moj mali svemir. Ovo je mjesto gdje ću dijeliti svoje misli, ideje, inspiraciju i sve ono što me čini sretnom. Želim da ova stranica bude kutak pozitivne energije, mašte i kreativnosti, gdje svaka priča ima svoje mjesto među zvijezdama. Ovo je tek početak jednog lijepog putovanja. 💫
+          </p>
+          <a href="#gallery" class="btn">✨ Nastavi dalje</a>
+        </div>
+        <div class="post-card" id="space-love">
+          <h3>🪐 Zašto volim svemir</h3>
+          <p>
+            Volim svemir jer u njemu ništa nije jednostavno, a opet sve ima neku svoju tišinu i sklad. Dok gledam zvijezde, imam osjećaj kao da svijet na trenutak uspori i postane mirniji. Svemir me uči strpljenju, radoznalosti i tome da ne moramo uvijek imati sve odgovore. Neke stvari su lijepe baš zato što su nepoznate. 🌙
+          </p>
+          <a href="#planets" class="btn">🚀 Pogledaj planete</a>
+        </div>
+<section id="zanimljive-cinjenice">
+  <div class="post-card">
+    <h3>Top 10 zanimljivih činjenica o svemiru</h3>
+
+  <p> 1. 🌍 Zemlja nije savršena kugla </p>
+
+<p> Zemlja je malo spljoštena na polovima, a “šira” na ekvatoru — znači nije potpuno okrugla!
+  </p>
+ <p> 2. 🌙 Na Mjesecu možeš skakati više</p>
+
+<p>Zbog slabije gravitacije, možeš skočiti i do 6 puta više nego na Zemlji 😄
+  </p>
+  <p> 3. ☀️ Sunce čini 99% mase Sunčevog sistema</p>
+
+<p>Sve planete zajedno su sićušne u poređenju sa Suncem!
+  </p>
+   <p> 4. ⭐ Zvijezde koje vidiš su iz prošlosti</p>
+
+<p>Svjetlost putuje godinama — znači kad gledaš zvijezde, vidiš kako su izgledale prije mnogo vremena!
+  </p>
+
+<p> 5. 🔥 Na Veneri je toplije nego na Merkuru</p>
+
+<p>Iako je dalje od Sunca, Venera ima ekstreman efekat staklene bašte i temperature preko 450°C 😱
+  </p>
+
+<p> 6. 🌌 U svemiru nema zvuka</p>
+
+<p>Zvuk se ne može širiti jer nema zraka — svemir je potpuno tih.
+  </p>
+<p> 7. 🪐 Saturn bi mogao plutati</p>
+
+<p> Saturn ima jako malu gustoću — teoretski bi plutao na vodi!
+  </p>
+<p> 8. 🚀 Svemir nema “gore” ni “dolje”</p>
+
+<p> U svemiru ne postoji pravac kao na Zemlji — sve je relativno
+  </p>
+
+<p> 9. 🌟 Postoje zvijezde veće od Sunca i 1000 puta</p>
+
+<p> Neke zvijezde su OGROMNE — jedna bi mogla progutati cijeli Sunčev sistem.
+  </p>
+<p> 10. 🌠 Svemir se stalno širi</p>
+
+<p> Galaksije se udaljavaju jedna od druge — svemir raste svakog trenutka!
+  </p>
+
+  <a href="#gallery" class="btn">✨ Nastavi dalje</a>
+</div>
+</section>
+
+<div class="post-card">
+    <h3>🚀 Od Apolla do Artemisa</h3>
+
+  <p>
+    Nekada davno, dok je čovječanstvo tek počinjalo da sanja o svemiru,
+    nastale su legendarne 
+   <a href="https://en.wikipedia.org/wiki/Apollo_program" target="_blank" class="apollo-link">
+  Apollo misije
+</a>.  
+    To su bile prve misije koje su omogućile ljudima da kroče na Mjesec
+    i ostave trag u beskonačnosti svemira.
+  </p>
+
+  <p>
+    Taj trenutak nije bio samo naučni uspjeh — bio je dokaz da su snovi jači
+    od granica koje sami sebi postavljamo. Zvijezde više nisu bile nedostižne,
+    već cilj kojem težimo.
+  </p>
+
+  <p>
+    Danas, svemir nas ponovo zove kroz novu generaciju istraživanja —
+    <a href="https://www.nasa.gov/artemis/" target="_blank">
+      Artemis misije
+    </a>.  
+    Ove misije imaju za cilj da vrate ljude na Mjesec, ali i da naprave
+    temelje za buduća putovanja ka Marsu i dalje.
+  </p>
+
+  <p>
+    Ono što Artemis čini posebnim jeste činjenica da donosi novu eru —
+    inkluzivniju, napredniju i dugoročniju. Po prvi put, i žena će kročiti
+    na Mjesec, a čovječanstvo će napraviti korak bliže trajnom boravku
+    izvan naše planete.
+  </p>
+
+  <p>
+    I dok gledamo u noćno nebo, možda nam se čini da su zvijezde daleko…
+    ali istina je da smo im svakim danom sve bliže. 🤎🌙
+  </p>
+
+  <a href="#gallery" class="btn">✨ Nastavi dalje</a>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="reveal">
+    <div class="section-box">
+      <h2 class="section-title">📸 Galerija planeta</h2>
+      <p class="section-subtitle">
+        Svaka planeta nosi svoj karakter, boju i emociju. Klikni na sliku da je otvoriš veću.
+      </p>
+
+      <div class="gallery-grid" id="planets">
+        <div class="gallery-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars" onclick="openLightbox(this.src)">
+          <div class="gallery-info">
+            <h3>🔴 Mars</h3>
+            <p>
+              Mars me privlači svojom snagom i tajanstvenošću. Njegova crvena boja djeluje kao simbol hrabrosti, energije i želje da se ide naprijed, čak i kada je put neizvjestan. Za mene, Mars je simbol početaka i snova koji tek trebaju postati stvarnost. 💫
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturn" onclick="openLightbox(this.src)">
+          <div class="gallery-info">
+            <h3>🪐 Saturn</h3>
+            <p>
+              Saturn me osvaja svojom elegancijom i tišinom. Njegovi prstenovi izgledaju kao da oko sebe nosi savršeno oblikovanu krunu. Za mene, Saturn je simbol elegancije, strpljenja i unutrašnje snage. ✨
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg" alt="Neptun" onclick="openLightbox(this.src)">
+          <div class="gallery-info">
+            <h3>💙 Neptun</h3>
+            <p>
+              Neptun me očarava svojom tišinom i dubinom. Njegova plava boja podsjeća na beskrajne okeane i skrivene svjetove. Za mene, Neptun je simbol unutrašnjeg mira, mašte i dubokih misli koje ne moraju uvijek biti izgovorene. 💙
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Jupiter" onclick="openLightbox(this.src)">
+          <div class="gallery-info">
+            <h3>🤎Jupiter</h3>
+            <p>
+              Jupiter me fascinira svojom veličinom i snagom. Njegove šare i vrtlozi izgledaju kao umjetničko djelo koje se stalno mijenja. Za mene, Jupiter predstavlja moć, stabilnost i podsjetnik da i u najvećem haosu može postojati posebna ljepota. 🌟
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="insta" class="instagram-section reveal">
+    <div class="section-box">
+      <h2 class="section-title">💖 Cosmic feed</h2>
+      <p class="section-subtitle">
+        Mali Instagram style dio moje stranice — slike, osjećaji i captioni iz mog svemira.
+      </p>
+
+      <div class="instagram-grid">
+        <div class="social-card">
+          <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=80" alt="Galaxy" onclick="openLightbox(this.src)">
+          <div class="social-meta">✨ @cosmicvibes • 1h</div>
+          <div class="social-text">Neke noći nisu obične — neke noći izgledaju kao da cijeli svemir šapuće.</div>
+          <div class="social-actions">💖 248 sviđanja &nbsp; 💬 31 komentar &nbsp; ✨ sačuvano</div>
+        </div>
+
+        <div class="social-card">
+          <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80" alt="Stars" onclick="openLightbox(this.src)">
+          <div class="social-meta">🌙 @cosmicvibes • 3h</div>
+          <div class="social-text">Ponekad je dovoljno samo podići pogled prema nebu i podsjetiti se koliko su snovi veliki.</div>
+          <div class="social-actions">💖 391 sviđanje &nbsp; 💬 54 komentara &nbsp; 🌌 share</div>
+        </div>
+
+        <div class="social-card">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Planet earth from space" onclick="openLightbox(this.src)">
+          <div class="social-meta">🚀 @cosmicvibes • 6h</div>
+          <div class="social-text">Svijet izgleda drugačije kada ga posmatraš očima mašte.</div>
+          <div class="social-actions">💖 427 sviđanja &nbsp; 💬 62 komentara &nbsp; 💫 vibe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="section-box">
+      <h2 class="section-title">📩 Kontakt</h2>
+      <p class="section-subtitle">
+        Hvala ti što si posjetio moj svemir. Ako želiš, možeš me pronaći ovdje:
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>💌 Email</h3>
+          <p>melisatabic377@gmail.com</p>
+        </div>
+
+        <div class="contact-card">
+          <h3>📷 Instagram</h3>
+          <p>@melisatabic</p>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <h3>🌠 Poruka za kraj</h3>
+        <p>Hvala ti što si dio mog malog svemira. ✨</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    ✨ Cosmic Vibes © 2026
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">×</span>
+    <img id="lightbox-img" src="" alt="Uvećana slika">
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function toggleSidebar() {
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove("open");
+      overlay.classList.remove("show");
+    }
+
+    function toggleAccordion(button) {
+      const content = button.parentElement.querySelector(".accordion-content");
+      const symbol = button.querySelector("span:last-child");
+
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        symbol.textContent = "+";
+      } else {
+        document.querySelectorAll(".accordion-content").forEach(item => {
+          item.style.maxHeight = null;
+        });
+        document.querySelectorAll(".accordion-btn span:last-child").forEach(item => {
+          item.textContent = "+";
+        });
+
+        content.style.maxHeight = content.scrollHeight + "px";
+        symbol.textContent = "–";
+      }
+    }
+
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("open");
+    }
+
+    window.addEventListener("load", function() {
+      setTimeout(() => {
+        document.getElementById("loader").classList.add("hidden");
+      }, 1800);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, {
+      threshold: 0.16
+    });
+
+    document.querySelectorAll(".reveal").forEach(el => {
+      observer.observe(el);
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeSidebar();
+        closeLightbox();
+      }
+    });
+  </script>
+
+</body>
+</html>
