@@ -896,6 +896,18 @@ section {
   margin-top: 10px;
 }
 
+#blog,
+#gallery,
+#insta,
+#contact,
+#about,
+.hero,
+.top-nav,
+header {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (max-width: 950px) {
   .hero {
     grid-template-columns: 1fr;
@@ -1306,7 +1318,7 @@ section {
   <a href="#gallery" class="btn">✨ Nastavi dalje</a>
 </div>
 
-<div class="post-card" id="prvi-covjek">
+<div class="post-card " id="prvi-covjek">
     <h3>🌌🚀 Prvi čovjek u svemiru</h3>
 
     <p>
@@ -1501,7 +1513,7 @@ section {
     <img id="lightbox-img" src="" alt="Uvećana slika">
   </div>
 
-   <script>
+  <script>
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
 
@@ -1566,19 +1578,23 @@ section {
     }, 1800);
   });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, {
-    threshold: 0.16
-  });
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.16 });
 
-  document.querySelectorAll(".reveal").forEach(el => {
-    observer.observe(el);
-  });
+    document.querySelectorAll(".reveal").forEach(el => {
+      observer.observe(el);
+    });
+  } else {
+    document.querySelectorAll(".reveal").forEach(el => {
+      el.classList.add("visible");
+    });
+  }
 
   document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
