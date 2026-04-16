@@ -1513,95 +1513,152 @@ header {
     <img id="lightbox-img" src="" alt="Uvećana slika">
   </div>
 
-  <script>
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("overlay");
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-  function toggleSidebar() {
-    sidebar.classList.toggle("open");
-    overlay.classList.toggle("show");
-  }
+const firebaseConfig = {
+  apiKey: "AIzaSyB-8f95cwZyBauk8_UbSWpddGnqcK2exT4",
+  authDomain: "myspace-moon.firebaseapp.com",
+  projectId: "myspace-moon",
+  storageBucket: "myspace-moon.firebasestorage.app",
+  messagingSenderId: "43387105553",
+  appId: "1:43387105553:web:c007d267a0356c1f3a1cb0"
+};
 
-  function closeSidebar() {
-    sidebar.classList.remove("open");
-    overlay.classList.remove("show");
-  }
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  function toggleAccordion(button) {
-    const content = button.parentElement.querySelector(".accordion-content");
-    const symbol = button.querySelector("span:last-child");
+async function addComment(button) {
+  const box = button.parentElement;
+  const textarea = box.querySelector("textarea");
+  const text = textarea.value.trim();
 
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-      symbol.textContent = "+";
-    } else {
-      document.querySelectorAll(".accordion-content").forEach(item => {
-        item.style.maxHeight = null;
-      });
+  if (!text) return;
 
-      document.querySelectorAll(".accordion-btn span:last-child").forEach(item => {
-        item.textContent = "+";
-      });
+  const post = button.closest(".post-card").id;
 
-      content.style.maxHeight = content.scrollHeight + "px";
-      symbol.textContent = "–";
-    }
-  }
-
-  function openLightbox(src) {
-    document.getElementById("lightbox-img").src = src;
-    document.getElementById("lightbox").classList.add("open");
-  }
-
-  function closeLightbox() {
-    document.getElementById("lightbox").classList.remove("open");
-  }
-
-  function addComment(button) {
-    let questionBox = button.parentElement;
-    let textarea = questionBox.querySelector("textarea");
-    let commentsList = questionBox.querySelector(".comments-list");
-    let comment = textarea.value;
-
-    if (!comment || comment.trim() === "") return;
-
-    let p = document.createElement("p");
-    p.textContent = "💬 " + comment;
-
-    commentsList.appendChild(p);
-    textarea.value = "";
-  }
-
-  window.addEventListener("load", function() {
-    setTimeout(() => {
-      document.getElementById("loader").classList.add("hidden");
-    }, 1800);
+  await addDoc(collection(db, "comments"), {
+    postId: post,
+    text: text,
+    createdAt: serverTimestamp()
   });
 
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.16 });
+  textarea.value = "";
+}
 
-    document.querySelectorAll(".reveal").forEach(el => {
-      observer.observe(el);
+window.addComment = addComment;
+
+function loadComments(postId) {
+  const post = document.getElementById(postId);
+  if (!post) return;
+
+  const list = post.querySelector(".comments-list");
+  const q = query(collection(db, "comments"), orderBy("createdAt"));
+
+  onSnapshot(q, (snapshot) => {
+    list.innerHTML = "";
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+
+      if (data.postId === postId) {
+        const p = document.createElement("p");
+        p.textContent = "💬 " + data.text;
+        list.appendChild(p);
+      }
     });
+  });
+}
+
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  setTimeout(() => {
+    loader.classList.add("hidden");
+  }, 1800);
+
+  loadComments("apollo-artemis");
+  loadComments("zivot-u-svemiru");
+});
+
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+
+function toggleAccordion(button) {
+  const content = button.parentElement.querySelector(".accordion-content");
+  const symbol = button.querySelector("span:last-child");
+
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+    symbol.textContent = "+";
   } else {
-    document.querySelectorAll(".reveal").forEach(el => {
-      el.classList.add("visible");
+    document.querySelectorAll(".accordion-content").forEach(item => {
+      item.style.maxHeight = null;
     });
-  }
 
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-      closeSidebar();
-      closeLightbox();
-    }
+    document.querySelectorAll(".accordion-btn span:last-child").forEach(item => {
+      item.textContent = "+";
+    });
+
+    content.style.maxHeight = content.scrollHeight + "px";
+    symbol.textContent = "–";
+  }
+}
+
+function openLightbox(src) {
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").classList.add("open");
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+}
+
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;
+window.toggleAccordion = toggleAccordion;
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.16 });
+
+  document.querySelectorAll(".reveal").forEach(el => {
+    observer.observe(el);
   });
+} else {
+  document.querySelectorAll(".reveal").forEach(el => {
+    el.classList.add("visible");
+  });
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closeSidebar();
+    closeLightbox();
+  }
+});
 </script>
 
 </body>
